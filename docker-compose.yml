@@ -1,0 +1,40 @@
+
+services:
+  # Backend Service (Node.js/Express/TypeScript)
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: apple-pay-backend
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    ports:
+      - "3000:3000"
+    command: npm start
+    restart: unless-stopped
+    networks:
+      - apple-pay-network
+
+  # Frontend Service (Nginx web server for HTML/JS)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: apple-pay-frontend
+    ports:
+      - "8081:80"
+    volumes:
+      - ./frontend/index.html:/usr/share/nginx/html/index.html:ro
+      - ./frontend/assets:/usr/share/nginx/html/assets:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+    networks:
+      - apple-pay-network
+
+networks:
+  apple-pay-network:
+    driver: bridge

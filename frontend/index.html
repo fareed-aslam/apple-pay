@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Subscription</title>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="/assets/app.js" defer></script>
+    <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <div class="logo-section">
+                    <div class="logo-placeholder"></div>
+                    <h1>Premium Subscription</h1>
+                </div>
+                <p class="subtitle">Start your 7-day free trial today</p>
+            </div>
+
+            <div class="pricing-section">
+                <div class="pricing-card">
+                    <div class="price-display">
+                        <span class="currency">$</span>
+                        <span class="amount">39.99</span>
+                        <span class="period">/month</span>
+                    </div>
+                    <div class="trial-badge">
+                        <span class="badge-text">7-Day Free Trial</span>
+                    </div>
+                </div>
+            </div>
+
+            <section class="subscription-section">
+                <div class="user-info-panel" id="userInfoPanel" style="display: none;">
+                    <h3 class="panel-title">Account Information</h3>
+                    <div class="info-grid">
+                        <div class="info-row">
+                            <span class="info-label">Customer ID</span>
+                            <span id="customerIdDisplay" class="info-value">N/A</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-label">Subscription ID</span>
+                            <span id="subscriptionIdDisplay" class="info-value">N/A</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-actions">
+                    <button id="startTrialBtn" class="payment-button payment-button-primary">
+                        Start Free Trial
+                    </button>
+                    
+                    <div id="stripe-card-fallback" class="card-payment-section" style="display: none;">
+                        <div class="section-divider">
+                            <span class="divider-text">Or pay with card</span>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email-input" class="form-label">Email address</label>
+                            <input 
+                                type="email" 
+                                id="email-input" 
+                                class="form-input" 
+                                placeholder="you@example.com"
+                                required
+                            >
+                            <span class="form-error" id="email-error"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="form-label">Card information</label>
+                            <div id="card-element" class="card-element-container">
+                                <!-- Stripe Elements will be mounted here -->
+                            </div>
+                            <span class="form-error" id="card-error"></span>
+                        </div>
+
+                        <button id="cardSubmitBtn" class="payment-button payment-button-primary payment-button-fullwidth">
+                            Start Free Trial
+                        </button>
+                        
+                        <p class="trial-notice">
+                            Your card will be saved for billing after the 7-day free trial. Cancel anytime.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="management-actions" id="managementActions" style="display: none;">
+                    <button id="cancelTrialBtn" class="management-button" disabled>
+                        Cancel Free Trial
+                    </button>
+                    <button id="cancelSubBtn" class="management-button" disabled>
+                        Cancel Subscription
+                    </button>
+                    <button id="refundBtn" class="management-button" disabled>
+                        Request Refund
+                    </button>
+                </div>
+            </section>
+
+            <div id="message-container" class="message-container" style="display: none;">
+                <div id="message" class="message-message info"></div>
+            </div>
+
+            <div class="payment-footer">
+                <p class="security-badge">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Secured by Stripe
+                </p>
+            </div>
+        </div>
+
+        <!-- Custom Apple Pay Style Bottom Drawer -->
+        <div id="applePayDrawer" class="apple-pay-drawer">
+            <div class="drawer-backdrop" id="drawerBackdrop"></div>
+            <div class="drawer-content">
+                <div class="drawer-handle"></div>
+                
+                <div class="drawer-header">
+                    <h2 class="drawer-title">Premium Subscription</h2>
+                    <p class="drawer-subtitle">Start your free trial</p>
+                </div>
+
+                <div class="drawer-body">
+                    <div class="product-summary">
+                        <div class="summary-item">
+                            <span class="summary-label">7-Day Free Trial</span>
+                            <span class="summary-value">$0.00</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Then $39.99/month</span>
+                            <span class="summary-value">Starting in 7 days</span>
+                        </div>
+                    </div>
+
+                    <div class="trial-info">
+                        <div class="info-icon">ℹ️</div>
+                        <p class="info-text">
+                            Your trial starts immediately. You'll be charged $39.99/month after 7 days. Cancel anytime during the trial.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="drawer-footer">
+                    <button id="continueApplePayBtn" class="apple-pay-continue-btn">
+                        Continue with Apple Pay
+                    </button>
+                    <button id="closeDrawerBtn" class="drawer-close-btn">
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

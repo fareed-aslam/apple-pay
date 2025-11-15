@@ -1,0 +1,575 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #007aff;
+    --primary-hover: #0051d5;
+    --text-primary: #000000;
+    --text-secondary: #8e8e93;
+    --text-tertiary: #c7c7cc;
+    --background: #f2f2f7;
+    --surface: #ffffff;
+    --separator: #c6c6c8;
+    --error: #ff3b30;
+    --success: #34c759;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+    background: var(--background);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.app-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+.main-content {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+/* Header */
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.logo-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.logo-placeholder {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, #5856d6 100%);
+    border-radius: 12px;
+    margin-bottom: 16px;
+}
+
+.header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.5px;
+    margin-bottom: 8px;
+}
+
+.subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+}
+
+/* Pricing */
+.pricing-section {
+    margin-bottom: 32px;
+}
+
+.pricing-card {
+    background: var(--surface);
+    border-radius: 16px;
+    padding: 24px;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+.price-display {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-bottom: 12px;
+}
+
+.currency {
+    font-size: 24px;
+    font-weight: 600;
+    margin-right: 4px;
+}
+
+.amount {
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.period {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin-left: 4px;
+}
+
+.trial-badge {
+    display: inline-block;
+    background: var(--success);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Payment Actions */
+.payment-actions {
+    margin-bottom: 24px;
+}
+
+.payment-button {
+    width: 100%;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    background: var(--primary-color);
+    color: white;
+    margin-bottom: 12px;
+}
+
+.payment-button:hover:not(:disabled) {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+}
+
+.payment-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.payment-button:disabled {
+    background: var(--separator);
+    color: var(--text-tertiary);
+    cursor: not-allowed;
+}
+
+/* Card Form */
+.card-payment-section {
+    margin-top: 24px;
+}
+
+.section-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+}
+
+.section-divider::before,
+.section-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--separator);
+}
+
+.divider-text {
+    padding: 0 16px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.form-input {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 17px;
+    border: 1.5px solid var(--separator);
+    border-radius: 10px;
+    background: var(--surface);
+    transition: border-color 0.2s;
+    font-family: inherit;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+.card-element-container {
+    background: var(--surface);
+    padding: 12px 16px;
+    border: 1.5px solid var(--separator);
+    border-radius: 10px;
+    min-height: 48px;
+}
+
+.form-error {
+    display: block;
+    font-size: 13px;
+    color: var(--error);
+    margin-top: 6px;
+}
+
+.trial-notice {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-align: center;
+    margin-top: 16px;
+}
+
+/* Management Actions */
+.management-actions {
+    border-top: 1px solid var(--separator);
+    padding-top: 24px;
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.management-button {
+    padding: 12px 20px;
+    border: 1.5px solid var(--separator);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text-secondary);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.management-button:hover:not(:disabled) {
+    background: var(--background);
+    border-color: var(--text-secondary);
+}
+
+/* User Info Panel */
+.user-info-panel {
+    background: var(--background);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.panel-title {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--separator);
+}
+
+.info-row:last-child {
+    border-bottom: none;
+}
+
+.info-label {
+    font-size: 15px;
+    color: var(--text-secondary);
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 600;
+    word-break: break-all;
+    text-align: right;
+}
+
+/* Messages */
+.message-container {
+    margin-top: 24px;
+}
+
+.message-message {
+    padding: 16px;
+    border-radius: 12px;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.message-message.info {
+    background: #e3f2fd;
+    color: #1976d2;
+}
+
+.message-message.success {
+    background: #e8f5e9;
+    color: #388e3c;
+}
+
+.message-message.error {
+    background: #ffebee;
+    color: #d32f2f;
+}
+
+.message-message.warning {
+    background: #fff3e0;
+    color: #f57c00;
+}
+
+/* Footer */
+.payment-footer {
+    margin-top: 32px;
+    text-align: center;
+    padding-top: 24px;
+    border-top: 1px solid var(--separator);
+}
+
+.security-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text-secondary);
+}
+
+/* Apple Pay Drawer - Custom Bottom Sheet (Apple Pay Style) */
+.apple-pay-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.apple-pay-drawer.active {
+    pointer-events: all;
+    opacity: 1;
+}
+
+.drawer-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: saturate(180%) blur(20px);
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    opacity: 0;
+    transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.apple-pay-drawer.active .drawer-backdrop {
+    opacity: 1;
+}
+
+.drawer-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: var(--surface);
+    border-radius: 20px 20px 0 0;
+    max-height: 75vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.32, 0.72, 0, 1);
+    box-shadow: 0 -8px 32px rgba(0, 0, 0, 0.25);
+    will-change: transform;
+}
+
+.apple-pay-drawer.active .drawer-content {
+    transform: translateY(0);
+}
+
+.drawer-handle {
+    width: 36px;
+    height: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    margin: 12px auto 20px;
+}
+
+.drawer-header {
+    padding: 0 24px 20px;
+    text-align: center;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.drawer-title {
+    font-size: 21px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+}
+
+.drawer-subtitle {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+.drawer-body {
+    padding: 24px;
+}
+
+.product-summary {
+    background: transparent;
+    border-radius: 0;
+    padding: 0;
+    margin-bottom: 24px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-label {
+    font-size: 17px;
+    color: var(--text-primary);
+    font-weight: 400;
+}
+
+.summary-value {
+    font-size: 17px;
+    color: var(--text-primary);
+    font-weight: 600;
+    text-align: right;
+}
+
+.trial-info {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    background: rgba(52, 199, 89, 0.1);
+    border-radius: 12px;
+    border: none;
+    margin-bottom: 8px;
+}
+
+.info-icon {
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.info-text {
+    font-size: 13px;
+    color: #248a3d;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.drawer-footer {
+    padding: 8px 24px 34px;
+    border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+    background: var(--surface);
+    position: sticky;
+    bottom: 0;
+}
+
+.apple-pay-continue-btn {
+    width: 100%;
+    padding: 16px 24px;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 600;
+    background: #000000;
+    color: white;
+    cursor: pointer;
+    transition: all 0.15s;
+    margin-bottom: 8px;
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    min-height: 50px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.apple-pay-continue-btn:hover:not(:disabled) {
+    background: #1a1a1a;
+    transform: scale(0.98);
+}
+
+.apple-pay-continue-btn:active:not(:disabled) {
+    transform: scale(0.96);
+    background: #000000;
+}
+
+.apple-pay-continue-btn:disabled {
+    background: var(--separator);
+    color: var(--text-tertiary);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.drawer-close-btn {
+    width: 100%;
+    padding: 12px 24px;
+    border: none;
+    background: transparent;
+    color: var(--primary-color);
+    font-size: 17px;
+    font-weight: 400;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background 0.15s;
+    min-height: 44px;
+}
+
+.drawer-close-btn:hover {
+    background: rgba(0, 122, 255, 0.1);
+}
+
+.drawer-close-btn:active {
+    background: rgba(0, 122, 255, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .main-content {
+        padding: 24px 16px;
+    }
+    
+    .drawer-content {
+        max-height: 85vh;
+    }
+}
